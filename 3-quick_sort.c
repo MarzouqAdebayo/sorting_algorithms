@@ -1,20 +1,5 @@
 #include "sort.h"
 
-void print_arr(const int *array, int low, int high)
-{
-	int i;
-
-	i = low;
-	while (array && i <= high)
-	{
-		if (i > 0)
-			printf(", ");
-		printf("%d", array[i]);
-		++i;
-	}
-	printf("\n");
-}
-
 /**
  * swap - Swaps two integers in an array
  * @a: Pointer to the first integer
@@ -68,9 +53,11 @@ int lomuto_partition(int *array, int low, int high, size_t size)
  */
 void quicksort(int *array, int low, int high, size_t size)
 {
+	int pi;
+
 	if (low < high)
 	{
-		int pi = lomuto_partition(array, low, high, size);
+		pi = lomuto_partition(array, low, high, size);
 
 		quicksort(array, low, pi - 1, size);
 		quicksort(array, pi + 1, high, size);
@@ -86,6 +73,5 @@ void quick_sort(int *array, size_t size)
 {
 	if (array == NULL || size < 2)
 		return;
-
 	quicksort(array, 0, size - 1, size);
 }
